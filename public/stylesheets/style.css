@@ -19,6 +19,8 @@ h1 {
 	font-size: 150%;
 }
 
+h1 a { color: #0c0 }
+
 h1.title {
 	font-size: 300%;
 }
@@ -47,3 +49,16 @@ table.index td { padding: 10px }
 
 th { text-align: left }
 tr.odd { background: #cfc; }
+
+#content {
+	float : left;
+	overflow: hidden;
+	width: auto;
+	margin-right: 200px
+}
+
+#interested {
+	float: right;
+	overflow: hidden;
+	width: 300px;
+}

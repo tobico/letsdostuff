@@ -1,11 +1,28 @@
-%h2= @project.summary
-%h3 Here's the pitch:
-%p= @project.pitch
-%p{:style => 'font-style: italic'}
-  - if @project.owner == current_user
-    This is your project
-    = link_to 'delete it', @project, :method => 'delete', :confirm => 'Delete it for real?'
-  - else
-    Is this awesome to you? Speak to
-    = link_to @project.owner.icon_tag, @project.owner.profile
-    = link_to @project.owner.name, @project.owner.profile
+#content
+  %h2= h @project.summary
+  %h3 Here's the pitch:
+  %p= h @project.pitch
+  %p{:style => 'font-style: italic'}
+    - if @project.owner == current_user
+      This is your project, you may
+      = link_to 'edit it', :action => 'edit', :id => @project.id
+      or
+      = link_to 'delete it', @project, :method => 'delete', :confirm => 'Delete it for real?'
+    - else
+      Is this awesome to you? Speak to
+      = link_to @project.owner.icon_tag, @project.owner.profile
+      = link_to @project.owner.name, @project.owner.profile
+#interested
+  %h2 Interested
+  %h3 These folks want to do this:
+  %table.index
+    - @project.interested_users.each do |user|
+      %tr{:class => cycle('odd', 'even')}
+        %td{:width => 1}
+          = link_to user.icon_tag, user.profile
+        %td= link_to user.name, user.profile
+  - unless current_user.nil?
+    - if @project.interested_users.include? current_user
+      = link_to "I'm no longer interested in this", :action => 'destroy_interest', :id => @project.id
+    - else
+      = link_to "I'm interested in this too", :action => 'create_interest', :id => @project.id

@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :except => ['index', 'show']
+  before_filter :must_be_owner, :only => ['edit', 'update', 'destroy']
   
   # GET /projects
   # GET /projects.xml
@@ -47,6 +48,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        @project.interested_users << current_user
         flash[:notice] = 'Project was successfully created.'
         format.html { redirect_to(@project) }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
@@ -77,15 +79,31 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.xml
   def destroy
-    @project = Project.find(params[:id])
-    if @project.owner == current_user
-      @project.destroy
+    @project.destroy
 
-      respond_to do |format|
-        format.html { redirect_to :action => 'index' }
-        format.xml  { head :ok }
-      end
-    else
+    respond_to do |format|
+      format.html { redirect_to :action => 'index' }
+      format.xml  { head :ok }
+    end
+  end
+  
+  def create_interest
+    @project = Project.find(params[:id])
+    @project.interested_users << current_user
+    redirect_to @project
+  end
+  
+  def destroy_interest
+    @project = Project.find(params[:id])
+    @project.interested_users.delete current_user
+    redirect_to @project
+  end
+  
+private
+  
+  def must_be_owner
+    @project = Project.find(params[:id])
+    if @project.owner != current_user
       flash[:notice] = "Can't let you do that, Dave"
       redirect_to projects_url
     end
