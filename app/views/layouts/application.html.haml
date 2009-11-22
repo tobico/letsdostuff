@@ -1,0 +1,18 @@
+<!doctype html>
+%head
+  %title Let's do stuff!
+  = stylesheet_link_tag "style"
+%body
+  %h1.title Let's do stuff!
+  #login-box
+    = link_to 'Home', '/'
+    - if current_user 
+      %span
+        = current_user.icon_tag
+        = "Welcome, #{current_user.name}"
+      = link_to 'Logout', logout_path
+    - else
+      = link_to 'Login', login_path
+  - if flash[:notice]
+    .notice= flash[:notice]
+  = yield

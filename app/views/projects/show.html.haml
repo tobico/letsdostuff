@@ -1,0 +1,11 @@
+%h2= @project.summary
+%h3 Here's the pitch:
+%p= @project.pitch
+%p{:style => 'font-style: italic'}
+  - if @project.owner == current_user
+    This is your project
+    = link_to 'delete it', @project, :method => 'delete', :confirm => 'Delete it for real?'
+  - else
+    Is this awesome to you? Speak to
+    = link_to @project.owner.icon_tag, @project.owner.profile
+    = link_to @project.owner.name, @project.owner.profile

@@ -1,0 +1,11 @@
+- if @projects.count > 0
+  %h2 Some people want to do some stuff:
+  %table.index
+    - @projects.each do |project|
+      %tr{:class => cycle(:odd, :even)}
+        - unless project.owner.nil?
+          %td{:width => 200}
+            = project.owner.icon_tag
+            = project.owner.name
+        %td= link_to project.summary, project
+= link_to 'I want to do some other stuff', new_project_path

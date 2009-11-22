@@ -1,0 +1,49 @@
+body {
+	font: 14pt Helvetica, Arial, sans-serif;
+	padding: 0 20px
+}
+
+#login-box { position: absolute; right: 20px; top: 20px }
+#login-box a, #login-box span { margin-left : 10px }
+
+img.user_icon { width: 32px; height: 32px; vertical-align: middle; border : solid 1px #0c0 }
+
+.notice {
+	padding: 10px;
+	background: #fc0;
+}
+
+h1 {
+	color: #0c0;
+	font-weight: bold;	
+	font-size: 150%;
+}
+
+h1.title {
+	font-size: 300%;
+}
+
+h2 {
+	color : #0c0
+}
+
+a {
+	color : #c90
+}
+
+.field { clear: left; border-bottom : solid 1px #c90; padding-bottom: 5px; margin-bottom: 5px }
+.field .label { float: left; width: 200px; color: #0c0; font-size: 120% }
+.field .input { margin-left: 220px }
+.buttons { margin-left: 220px; font-size: 100% }
+	.buttons input, .buttons button { font-size: inherit; }	
+
+table.index {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+}
+
+table.index td { padding: 10px }
+
+th { text-align: left }
+tr.odd { background: #cfc; }

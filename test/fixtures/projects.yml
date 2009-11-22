@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  summary: MyString
+  pitch: MyText
+  owner: 1
+
+two:
+  summary: MyString
+  pitch: MyText
+  owner: 1

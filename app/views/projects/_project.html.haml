@@ -1,0 +1,10 @@
+- form_for(project) do |f|
+  = f.error_messages
+  .field
+    .label= f.label :summary
+    .input= f.text_field :summary
+  .field
+    .label= f.label :pitch
+    .input= f.text_area :pitch
+  .buttons
+    = f.submit 'Save'
