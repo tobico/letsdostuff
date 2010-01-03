@@ -12,6 +12,10 @@
       Is this awesome to you? Speak to
       = link_to @project.owner.icon_tag, @project.owner.profile
       = link_to @project.owner.name, @project.owner.profile
+  %h3 Discussion
+  %p
+    Discuss this on twitter with the hashtag
+    = '#' + @project.hash_tag
 #interested
   %h2 Interested
   %h3 These folks want to do this:
